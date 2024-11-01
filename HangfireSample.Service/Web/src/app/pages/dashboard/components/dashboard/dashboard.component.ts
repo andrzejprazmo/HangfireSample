@@ -26,9 +26,6 @@ export default class DashboardComponent implements OnDestroy {
     this.connectionHub.start().then(() => {
 
       this.connectionHub.invoke('StartJob').then(() => {
-        // this.connectionHub.on('StartJob', (connectionId) => {
-        //   this.connectionId = connectionId;
-        // });
         this.connectionHub.on('JobProgress', (progress) => {
           this.progress = progress;
         });

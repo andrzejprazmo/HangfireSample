@@ -13,19 +13,15 @@ namespace HangfireSample.Service.Jobs
             this.hubContext = hubContext;
         }
 
-        public int Progress { get; set; }
-
         public void DoWork(string connectionId)
         {
             int counter = 0;
             while (counter++ < 10)
             {
-                Progress = counter * 10;
                 Console.WriteLine($"Hello from Hangfire Job: {counter}");
-                this.hubContext.Clients.All.SendAsync("JobProgress", Progress);
-                Thread.Sleep(5000);
+                this.hubContext.Clients.Client(connectionId).SendAsync("JobProgress", counter * 10);
+                Thread.Sleep(1000);
             }
-            Progress = 0;
         }
     }
 }

@@ -42,13 +42,6 @@ app.MapGet("/api/job", (IBackgroundJobClient jobClient, LongTailJob job) =>
 .WithName("StartJob")
 .WithOpenApi();
 
-app.MapGet("/api/status", (LongTailJob job) =>
-{
-    return Results.Ok(job.Progress);
-})
-.WithName("JobStatus")
-.WithOpenApi();
-
 app.MapHub<LongTailHub>("/hub");
 
 app.MapFallbackToFile("index.html");
