@@ -11,6 +11,7 @@ var webApplicationOptions = new WebApplicationOptions
 };
 var builder = WebApplication.CreateBuilder(webApplicationOptions);
 
+// TEST
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHangfire(config =>
